@@ -14,11 +14,7 @@ data class Post(
     val isEmpty: Boolean get() = this == empty
 
     fun hasMatch(query: String): Boolean {
-        val spaceRegex = Regex("\\s")
-        val queryWords = query.trim().split(spaceRegex)
-        return queryWords.any {
-            val queryRegex = Regex(it, RegexOption.IGNORE_CASE)
-            return queryRegex.containsMatchIn(title) || queryRegex.containsMatchIn(body)
-        }
+        val queryRegex = Regex(query, RegexOption.IGNORE_CASE)
+        return queryRegex.containsMatchIn(title) || queryRegex.containsMatchIn(body)
     }
 }
