@@ -69,6 +69,13 @@ class PostModel(container: ComponentContainer) : AndroidNonvisibleComponent(cont
     }
 
     @SimpleFunction(
+        description = "Check whether the given query matches the post or not. Returns false if post is empty."
+    )
+    fun HasMatch(query: String, post: Any): Boolean {
+        return if (!IsEmpty(post)) (post as Post).hasMatch(query) else false
+    }
+
+    @SimpleFunction(
         description = "Set value of current post in order to access other properties. Return true if CurrentPost was set successfully."
     )
     fun SetCurrentPost(post: Any): Boolean {
